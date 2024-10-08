@@ -1,10 +1,16 @@
+import { typedKey } from "@playground/app-toolkit";
 import { createReactBean } from "rx-bean";
+import { useStateFromObservable } from "rx-nested-bean";
+import { map } from "rxjs";
 
 export interface IActivity {
   id: string;
   name: string;
   status: "active" | "inactive";
 }
+
+export const ActivityServiceToken =
+  typedKey<ActivityService>("ActivityService");
 
 export class ActivityService {
   private activityController = createReactBean(
@@ -41,7 +47,17 @@ export class ActivityService {
     );
   };
 
+  getActivity$ = (id: string) => {
+    return this.activityController.ActivityList$.pipe(
+      map((acts) => acts.find((act) => act.id === id))
+    );
+  };
+
+  getActivity = (id: string) => {
+    return this.getActivityList().find((act) => act.id === id);
+  };
+
   useActivity = (id: string) => {
-    return this.activityController.useActivity(id);
+    return useStateFromObservable(this.getActivity$(id), this.getActivity(id));
   };
 }

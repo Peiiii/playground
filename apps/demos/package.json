@@ -12,9 +12,11 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "xbook": "workspace:*",
     "rx-bean": "workspace:*",
-    "rx-nested-bean": "workspace:*"
+    "rx-nested-bean": "workspace:*",
+    "rxjs": "^7.8.1",
+    "xbook": "workspace:*",
+    "@playground/app-toolkit": "workspace:*"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.1",
