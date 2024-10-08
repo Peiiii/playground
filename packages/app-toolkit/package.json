@@ -1,0 +1,24 @@
+{
+  "name": "@playground/app-toolkit",
+  "version": "1.0.0",
+  "description": "Toolkit for app development",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "toolkit",
+    "app",
+    "development"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rxjs": "^7.8.1"
+  },
+  "peerDependencies": {
+    "rxjs": "^7.8.1"
+  }
+}

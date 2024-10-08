@@ -1,0 +1,28 @@
+{
+  "name": "@playground/plugin-host",
+  "version": "1.0.0",
+  "description": "Plugin host for XBook",
+  "main": "dist/plugin-host.umd.js",
+  "module": "dist/plugin-host.es.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "plugin",
+    "host",
+    "xbook"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "xbook": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "typescript": "^5.0.0",
+    "vite": "^5.4.8",
+    "vite-plugin-dts": "^4.2.3"
+  }
+}

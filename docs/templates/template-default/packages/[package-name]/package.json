@@ -1,0 +1,8 @@
+{
+  "name": "{{package-name}}",
+  "version": "1.0.0",
+  "description": "{{package-description}}",
+  "main": "index.ts",
+  "types": "index.ts",
+  "scripts": {}
+}

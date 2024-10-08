@@ -1,0 +1,23 @@
+{
+  "name": "playground-vite-react-ts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "pnpm run -r build",
+    "dev:all": "pnpm run -r dev",
+    "build:all": "pnpm run -r build",
+    "lint:all": "pnpm run -r lint",
+    "preview:all": "pnpm run -r preview",
+    "dev:dino": "pnpm --filter dino-runner dev",
+    "build:dino": "pnpm --filter dino-runner build",
+    "lint:dino": "pnpm --filter dino-runner lint",
+    "preview:dino": "pnpm --filter dino-runner preview",
+    "build:app-toolkit": "pnpm --filter @playground/app-toolkit build",
+    "build:plugin-host": "pnpm --filter @playground/plugin-host build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
