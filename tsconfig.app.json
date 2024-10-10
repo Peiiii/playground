@@ -22,7 +22,7 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./apps/dino-runner/src/*"],
+      "@/*": ["./apps/demos/src/*"],
       "@demos/*": ["./apps/demos/src/*"]
     }
   },

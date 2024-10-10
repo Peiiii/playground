@@ -1,12 +1,18 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { PluginMetadata, PluginStatus, registerTestAPI } from "xbook";
 import { xbook } from "../../xbook";
+import {
+  CustomMonacoEditor,
+  MonacoKeyMod,
+  MonacoKeyCode,
+} from "../../../custom-monaco-editor";
+import { Editor } from "./editor";
 
 // 示例插件代码
 const examplePluginCode = `
  export async function activate(context) {
-  const demoService = context.createProxy("demoService");
-  demoService.hi();
+  const hello = context.createProxy("hello");
+  hello.sayHello();
 }
 
 export function deactivate(context) {
@@ -18,8 +24,8 @@ export function deactivate(context) {
 
 const quickTemplate = `
 export async function activate(context) {
-  const demoService = context.createProxy("demoService");
-  demoService.hi();
+  const hello = context.createProxy("hello");
+  hello.sayHello();
 }
 
 export function deactivate(context) {
@@ -35,6 +41,12 @@ const examplePluginMetadata: PluginMetadata = {
   dependencies: [],
 };
 
+xbook.exposeService("hello", {
+  sayHello: () => {
+    window.alert("hello");
+  },
+});
+
 const XBookDemo: React.FC = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const pluginManager = useMemo(() => {
@@ -46,7 +58,7 @@ const XBookDemo: React.FC = () => {
   const [plugins, setPlugins] = useState<PluginMetadata[]>(() =>
     pluginManager.getInstalledPlugins()
   );
-  const [newPluginCode, setNewPluginCode] = useState("");
+  const [newPluginCode, setNewPluginCode] = useState(quickTemplate);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window as any).pluginManager = pluginManager;
@@ -103,31 +115,29 @@ const XBookDemo: React.FC = () => {
     }
   };
 
+  const handleEditorChange = (value: string) => {
+    setNewPluginCode(value);
+  };
+
   return (
     <div>
       <h2>XBook Plugin System Demo</h2>
       <div>
         <h3>Install New Plugin</h3>
-        <textarea
-          value={newPluginCode}
-          onChange={(e) => setNewPluginCode(e.target.value)}
-          placeholder="Enter plugin code here..."
-          rows={5}
-          cols={50}
-        />
+        <div
+          style={{ height: "300px", width: "800px", border: "1px solid #ccc" }}
+        >
+          <Editor defaultValue={newPluginCode} language="javascript" />
+        </div>
         <br />
         <button onClick={installPlugin}>Install Plugin</button>
+        <button onClick={() => setNewPluginCode(quickTemplate)}>
+          Use Quick Template
+        </button>
       </div>
       <div>
         <h3>Installed Plugins</h3>
-        <span onClick={updatePluginList}>Refresh</span>
-        <span
-          onClick={() => {
-            setNewPluginCode(quickTemplate);
-          }}
-        >
-          use quick template
-        </span>
+        <button onClick={updatePluginList}>Refresh</button>
         <ul>
           {plugins.map((plugin) => (
             <li key={plugin.id}>

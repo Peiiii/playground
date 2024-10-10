@@ -15,9 +15,17 @@
     "lint:dino": "pnpm --filter dino-runner lint",
     "preview:dino": "pnpm --filter dino-runner preview",
     "build:app-toolkit": "pnpm --filter @playground/app-toolkit build",
-    "build:plugin-host": "pnpm --filter @playground/plugin-host build"
+    "build:plugin-host": "pnpm --filter @playground/plugin-host build",
+    "git:push": "git add . && git commit -m 'update' && git push"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.3.1",
+    "rxjs": "^7.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11"
+  }
 }
